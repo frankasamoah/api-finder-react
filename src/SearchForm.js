@@ -10,23 +10,23 @@ const SearchForm = () => {
   const [text, setText] = useState('');
   const [isLoading, setLoading] = useState(true);
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   const getIp = async () => {
-  //     setLoading(true);
+    const getIp = async () => {
+      setLoading(true);
 
-  //     const ip = await axios.get(
-  //       `https://geo.ipify.org/api/v2/country,city?apiKey=${process.env.REACT_APP_API_FINDER_KEY}&ipAddress=${query}`
-  //     );
-  //     const data = ip.data;
-  //     console.log(data);
+      const ip = await axios.get(
+        `https://geo.ipify.org/api/v2/country,city?apiKey=${process.env.REACT_APP_API_FINDER_KEY}&ipAddress=${query}`
+      );
+      const data = ip.data;
+      console.log(data);
 
-  //     setSearch(data)
+      setSearch(data)
 
-  //   };
-  //   getIp();
-  //   setLoading(false);
-  // }, [query]);
+    };
+    getIp();
+    setLoading(false);
+  }, [query]);
 
   useEffect(() => {
     const getCode = async () => {

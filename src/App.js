@@ -12,24 +12,24 @@ function App() {
   const [isLoading, setLoading] = useState(true);
 
 
-  // useEffect(() => {
+  useEffect(() => {
     
-  //     const getIp = async () => {
-  //         setLoading(true);
+      const getIp = async () => {
+          setLoading(true);
 
-  //         const ip = await axios.get(
-  //             `https://geo.ipify.org/api/v2/country,city?apiKey=${process.env.REACT_APP_API_FINDER_KEY}`
-  //     );
-  //     const data = ip.data;
-  //     console.log(data);
+          const ip = await axios.get(
+              `https://geo.ipify.org/api/v2/country,city?apiKey=${process.env.REACT_APP_API_FINDER_KEY}`
+      );
+      const data = ip.data;
+      console.log(data);
   
-  //     setIp(data);
+      setIp(data);
   
   
-  //   };
-  //   getIp();
-  //   setLoading(false);
-  // }, []);
+    };
+    getIp();
+    setLoading(false);
+  }, []);
 
 
   
