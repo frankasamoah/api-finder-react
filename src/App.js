@@ -1,46 +1,50 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import Map from "./Map";
 import "./App.css";
+import { DateTime } from "luxon";
+
 
 function App() {
   const [ip, setIp] = useState(null);
-
+ 
   const [isLoading, setLoading] = useState(true);
-  const [search, setSearch] = useState("");
 
-  const [countryCode, setCountryCode] = useState("");
 
   // useEffect(() => {
+    
+  //     const getIp = async () => {
+  //         setLoading(true);
 
-  //   const getIp = async () => {
-  //     setLoading(true);
-
-  //     const ip = await axios.get(
-  //       `https://geo.ipify.org/api/v2/country,city?apiKey=${process.env.REACT_APP_API_FINDER_KEY}`
+  //         const ip = await axios.get(
+  //             `https://geo.ipify.org/api/v2/country,city?apiKey=${process.env.REACT_APP_API_FINDER_KEY}`
   //     );
   //     const data = ip.data;
   //     console.log(data);
-
-  //     setIp(data)
-
+  
+  //     setIp(data);
+  
+  
   //   };
   //   getIp();
   //   setLoading(false);
   // }, []);
 
+  
+  
+  const [countryCode, setCountryCode] = useState("");
   useEffect(() => {
     const getCode = async () => {
-      setLoading(true);
 
-      const code = await axios.get(`https://restcountries.com/v3.1/alpha/de`);
+      const code = await axios.get(`https://restcountries.com/v3.1/alpha/${ip.location.country}`);
       const codes = code.data;
       console.log(codes);
 
       setCountryCode(codes);
     };
     getCode();
-  }, []);
+  }, [ip.location.country]);
 
   // useEffect(() => {
 
@@ -60,6 +64,8 @@ function App() {
 
   // }, []);
 
+ 
+
   // for input
   //@ &ipAddress=8.8.8.8
 
@@ -69,24 +75,28 @@ function App() {
   //   )
   //  }
 
+  // display local time
+
+
+  
+
   return (
     <div id="app">
-<div className="container text-center container--narrow">
+<div className="container text-center container-small">
       <h2 >Find <span style={{color: "#ECBDF1"}}>My</span> <span style={{color: "#CE8ED5"}}>IP</span></h2>
-      <form style={{ margin: "1rem" }}>
-        <input type="text" placeholder="Enter IP Address" />
-      </form>
+      <Link to="/search"><button className="button button1">MY IP</button></Link>
+      
       </div>   
       <div className="container">
       
-      <div class="split">
+      <div className="divider">
       <div className="text-container">
             {/* conditional rendering */}
             <h3>Your IP: {ip && ip.ip}</h3>
             {/* <img
             scr={countryCode && countryCode[0].flags.png}
             alt={countryCode && countryCode[0].name.common}
-          /> */}
+          style={{width: "6.5rem"}}/> */}
             {/* as a fallback if image doesn't show */}
             <h4>
               Country:{" "}
@@ -102,6 +112,7 @@ function App() {
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </h5>
+            <p>Local time</p>
           </div>
           <div className="map-container">
             <Map />
