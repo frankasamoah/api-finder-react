@@ -12,7 +12,7 @@
   border-radius: 5px;
 }
 
-.form input[type="search"] {
+.form input[type="text"] {
   border: none;
   background: transparent;
   margin: 0;
@@ -23,7 +23,7 @@
   border-radius: inherit;
 }
 
-.form input[type="search"]::placeholder {
+.form input[type="text"]::placeholder {
   color: #555;
 }
 

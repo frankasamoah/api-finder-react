@@ -31,7 +31,7 @@ function App() {
   //   setLoading(false);
   // }, []);
 
-  
+ 
   
   const [countryCode, setCountryCode] = useState("");
   useEffect(() => {
@@ -44,40 +44,16 @@ function App() {
       setCountryCode(codes);
     };
     getCode();
-  }, [ip.location.country]);
-
-  // useEffect(() => {
-
-  //   const getCode = async () => {
-  //     setLoading(true);
-
-  //     const code = await axios.get(
-  //       `https://api.countrylayer.com/v2/de?access_key=168a8d2297b62719c06cbb426d1feff5`
-  //     );
-  //     const codes = code.data;
-  //     console.log(codes);
-
-  //     // setCountryCode(codes)
-
-  //   };
-  //   getCode();
-
-  // }, []);
-
- 
-
-  // for input
-  //@ &ipAddress=8.8.8.8
-
-  //  if(isLoading) {
-  //   return (
-  //     <p className="loader"></p>
-  //   )
-  //  }
-
-  // display local time
+  }, [ip]);
 
 
+
+
+   if(isLoading) {
+    return (
+      <p className="loader"></p>
+    )
+   }
   
 
   return (
@@ -112,7 +88,8 @@ function App() {
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </h5>
-            <p>Local time</p>
+            <h6>Date: {DateTime.now().toLocaleString({ weekday: 'long', month: 'long', day: '2-digit' })}</h6>
+        <h6>Time: {DateTime.now().toLocaleString({ hour: '2-digit', minute: '2-digit' })}</h6>
           </div>
           <div className="map-container">
             <Map />

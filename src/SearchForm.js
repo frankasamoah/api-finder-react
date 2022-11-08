@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./SearchForm.css";
+import { DateTime } from "luxon";
 
 const SearchForm = () => {
   const [search, setSearch] = useState(null);
-  const [query, setQuery] = useState("8.8.8.8");
+  const [query, setQuery] = useState("");
   const [country, setCountry] = useState("");
-  const [text, setText] = useState('')
+  const [text, setText] = useState('');
+  const [isLoading, setLoading] = useState(true);
 
   // useEffect(() => {
 
   //   const getIp = async () => {
-  //     // setLoading(true);
+  //     setLoading(true);
 
   //     const ip = await axios.get(
   //       `https://geo.ipify.org/api/v2/country,city?apiKey=${process.env.REACT_APP_API_FINDER_KEY}&ipAddress=${query}`
@@ -23,8 +25,8 @@ const SearchForm = () => {
 
   //   };
   //   getIp();
-  //   // setLoading(false);
-  // }, []);
+  //   setLoading(false);
+  // }, [query]);
 
   useEffect(() => {
     const getCode = async () => {
@@ -37,31 +39,33 @@ const SearchForm = () => {
       setCountry(codes);
     };
     getCode();
-  }, []);
+  }, [search]);
 
 
   
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!e.target.value) {
-      alert("Type your IP address in the input");
-    } else {
       setQuery(text);
-      setText("")
-    }
+      setText("");
+
   };
 
   const handleChange = ({ target }) => {
     setText(target.value)
   };
 
+  if(isLoading) {
+    return (
+      <p className="loader"></p>
+    )
+   }
 
   return (
     <div className="search-area">
       <form className="form" onSubmit={handleSubmit}>
         <input
-          type="search"
+          type="text"
           
           placeholder="Enter IP Address..."
           onChange={handleChange}
@@ -84,7 +88,8 @@ const SearchForm = () => {
               .toString()
               .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
         </h5>
-        <p>Local time</p>
+        <h6>Date: {DateTime.now().toLocaleString({ weekday: 'long', month: 'long', day: '2-digit' })}</h6>
+        <h6>Time: {DateTime.now().toLocaleString({ hour: '2-digit', minute: '2-digit' })}</h6>
       </div>
     </div>
   );
