@@ -14,14 +14,6 @@
   animation: spin 2s linear infinite;
   
 }
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
 h1, h2, h3, h4, h5 {
  
@@ -38,6 +30,7 @@ h1, h2, h3, h4, h5 {
 .container {
   margin-inline: auto;
   width: min(90%, 70.5em);
+  /* background-color: blue; */
 }
 
 .text-container {
@@ -57,6 +50,7 @@ h1, h2, h3, h4, h5 {
   max-width: 34rem;
   /* background-color: white; */
   padding: 3rem 0;
+  /* background-color: red; */
 }
 
 .container-smallinput {
@@ -65,7 +59,6 @@ h1, h2, h3, h4, h5 {
 
 
 @media only screen and (min-width: 75em) {
-  /* to give a bit of breathing room on larger screens */
 
   .container-small {
     padding: 7rem 0;

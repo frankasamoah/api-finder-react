@@ -32,7 +32,7 @@ const SearchForm = () => {
     const getCode = async () => {
       
 
-      const code = await axios.get(`https://restcountries.com/v3.1/alpha/${search.location.country}`);
+      const code = await axios.get(`https://restcountries.com/v3.1/alpha/${search?.location?.country}`);
       const codes = code.data;
       console.log(codes);
 
@@ -73,7 +73,7 @@ const SearchForm = () => {
         <button type="submit">Search</button>
       </form>
       <div className="search-card">
-        <h3>Your IP: {search && search.ip}</h3>
+        <h3>Your IP: {search && search?.ip}</h3>
         <h4>
         Country:{" "}
         {country &&

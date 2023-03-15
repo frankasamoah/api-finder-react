@@ -6,7 +6,6 @@ const Map = () => {
   const [coords, setCoords] = useState(null);
 
   useEffect(() => {
-    // console.log(process.env);
     const getLocation = () => {
       const success = (position) => {
         console.log(position);
@@ -33,7 +32,7 @@ const Map = () => {
           center={[coords.latitude, coords.longitude]}
           zoom={13}
           scrollWheelZoom={true}
-        style={{height: "11.25rem"}}>
+        style={{height: "30rem", borderRadius: "0.5rem"}}>
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
