@@ -8,9 +8,7 @@ const Map = () => {
   useEffect(() => {
     const getLocation = () => {
       const success = (position) => {
-        console.log(position);
-        let pos = position.coords;
-        console.log(pos);
+        let pos = position?.coords;
         setCoords(pos);
       };
 
@@ -18,7 +16,7 @@ const Map = () => {
         console.log("Nothing to show");
       };
 
-      navigator.geolocation.getCurrentPosition(success, error);
+      navigator?.geolocation?.getCurrentPosition(success, error);
     };
 
     getLocation();
@@ -26,10 +24,9 @@ const Map = () => {
 
   return (
     <>
-    {/* conditional rendering */}
       {coords && (
         <MapContainer
-          center={[coords.latitude, coords.longitude]}
+          center={[coords?.latitude, coords?.longitude]}
           zoom={13}
           scrollWheelZoom={true}
         style={{height: "30rem", borderRadius: "0.5rem"}}>
@@ -39,7 +36,7 @@ const Map = () => {
           />
           <Marker position={[coords.latitude, coords.longitude]}>
             <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
+              { coords.latitude }, { coords.longitude } 
             </Popup>
           </Marker>
         </MapContainer>
